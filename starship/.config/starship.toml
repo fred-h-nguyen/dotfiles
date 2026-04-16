@@ -1,0 +1,45 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+palette = "dracula"
+
+[character]
+success_symbol = "[ ❯](bold green)"
+error_symbol = "[ ❯](bold red)"
+
+[directory]
+style = "bold green"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+format = " [$symbol$branch]($style) "
+style = "bold yellow"
+
+[git_status]
+conflicted = "!"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+modified = "~${count}"
+staged = "+${count}"
+deleted = "-${count}"
+style = "bright-white"
+format = "([$all_status$ahead_behind]($style)) "
+
+[cmd_duration]
+style = "bold yellow"
+format = "took [$duration]($style) "
+
+[palettes.dracula]
+background = "#282a36"
+foreground = "#f8f8f2"
+comment    = "#6272a4"
+cyan       = "#8be9fd"
+green      = "#50fa7b"
+orange     = "#ffb86c"
+pink       = "#ff79c6"
+purple     = "#bd93f9"
+red        = "#ff5555"
+yellow     = "#f1fa8c"

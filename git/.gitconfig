@@ -1,0 +1,55 @@
+[init]
+	defaultBranch = main
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	minus-style = "syntax #450a15"
+	plus-style = "syntax #0d2b12"
+
+[merge]
+	conflictstyle = diff3
+	rerere = true
+
+[fetch]
+	prune = true
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[pager]
+	branch = false
+
+[alias]
+	br     = branch
+	c      = checkout
+	ca     = commit --amend
+	cc     = commit
+	co     = checkout
+	cp     = cherry-pick
+	di     = diff
+	l      = whatchanged --color
+	lg     = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	rhh    = reset HEAD --hard
+	ri     = rebase -i
+	st     = status
+	poh    = push -u origin HEAD
+	gpu    = push -u origin HEAD
+	undo   = reset HEAD~1 --soft
+	r      = remote -v
+	rhs    = reset HEAD~1 --soft
+	recent = for-each-ref --sort='-committerdate' --format='%(committerdate) %(refname)' refs/heads | sed 's-refs/heads/--'
+
+# Personal config (name, email) lives in .gitconfig.local — not tracked in git
+[include]
+	path = ~/.gitconfig.local
