@@ -2,16 +2,26 @@
 
 Personal macOS dotfiles for Ghostty + tmux + zsh.
 
+## Install
+
+```sh
+git clone https://github.com/fred-h-nguyen/dotfiles.git ~/dotfiles
+cd ~/dotfiles && bash setup.sh
+```
+
+Then handle the manual steps the script prints at the end.
+
 ## Structure
 
 ```
 dotfiles/
-├── ghostty/              → ~/.config/ghostty/config
+├── ghostty/              → ~/.config/ghostty/
 ├── git/                  → ~/.gitconfig
 ├── scripts/
 │   └── tmux-scripts/     → ~/tmux-scripts/
 │       ├── llm-popup-toggle.sh   (Cmd+P — floating Claude session)
 │       └── shell-popup.sh        (Cmd+O — floating shell)
+├── ssh/                  → ~/.ssh/config
 ├── starship/             → ~/.config/starship.toml
 ├── tmux/                 → ~/.tmux.conf
 └── zsh/
@@ -20,49 +30,35 @@ dotfiles/
     └── .zshrc            → ~/.zshrc
 ```
 
-## Prerequisites
+## Manual steps (not automated)
 
-Install via Homebrew:
+| What | Why not tracked |
+|------|----------------|
+| 1Password + `op signin` | Secrets source for all API keys |
+| `~/.gitconfig.local` | Contains work name/email — not committed |
+| `~/.npmrc` | Contains work Artifactory token |
+| SSH keys | Private keys never tracked; `ssh/config` has the aliases |
 
-```sh
-brew install \
-  ghostty zinit starship fzf zoxide eza bat trash \
-  delta lazygit lazydocker nodenv rbenv \
-  tmux
-```
+### SSH keys
 
-Install tmux plugin manager:
-
-```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-Secrets (Bitbucket, Jira, Anthropic API key) are read from [1Password](https://1password.com) via `op` CLI — install and sign in before sourcing `.zprofile`.
-
-## Install
-
-Symlink each config to its expected location:
+Generate two keys — one for work, one for personal GitHub:
 
 ```sh
-# zsh
-ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/zsh/.zshenv ~/.zshenv
-ln -sf ~/dotfiles/zsh/.zprofile ~/.zprofile
-
-# git (identity lives in ~/.gitconfig.local — not tracked)
-ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
-
-# ghostty & starship
-mkdir -p ~/.config/ghostty
-ln -sf ~/dotfiles/ghostty/.config/ghostty/config ~/.config/ghostty/config
-ln -sf ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
-
-# tmux
-ln -sf ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/scripts/tmux-scripts ~/tmux-scripts
+ssh-keygen -t ed25519 -C "work" -f ~/.ssh/id_ed25519
+ssh-keygen -t ed25519 -C "fred-h-nguyen@github" -f ~/.ssh/id_ed25519_personal
 ```
 
-Then install tmux plugins: open tmux and press `prefix + I`.
+Add each public key to the respective GitHub account. The `ssh/config` in this repo already has the `github-personal` alias wired up; uncomment the work block for your work account.
+
+### ~/.gitconfig.local
+
+```ini
+[user]
+  name = Fred Nguyen
+  email = your@work-email.com
+[init]
+  templatedir = ~/.git-templates
+```
 
 ## Notable config
 
