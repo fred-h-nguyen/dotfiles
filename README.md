@@ -66,4 +66,5 @@ Add each public key to the respective GitHub account. The `ssh/config` in this r
 - **Cmd+P** — floating Claude Code popup (via Ghostty Unicode passthrough)
 - **Cmd+O** — floating shell popup
 - **Cmd+N / Shift+[ / Shift+]** — new window / prev / next (no prefix needed)
+- **Window names** — show the tmux window name (`#W`), not the shell-reported pane title
 - **git identity** — name/email live in `~/.gitconfig.local` (not tracked) via `[include]`
