@@ -53,10 +53,11 @@ symlink "$DOTFILES/ssh/config"                   ~/.ssh/config
 blue "→ tmux plugin manager (TPM)"
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  echo "  installed — open tmux and press prefix+I to install plugins"
-else
-  echo "  already installed"
 fi
+tmux new-session -d -s _setup 2>/dev/null || true
+~/.tmux/plugins/tpm/bin/install_plugins
+tmux kill-session -t _setup 2>/dev/null || true
+green "  TPM and plugins installed"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 
