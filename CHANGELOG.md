@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.1] - 2026-04-17
 
 ### Fixed
-- tmux window tabs showing hostname instead of window name — catppuccin window text was using `#T` (pane title, set by the shell) instead of `#W` (window name); set `@catppuccin_window_text` and `@catppuccin_window_current_text` to `#W`
+- tmux window tabs showing hostname instead of window name — catppuccin was using `#T` (pane title, set by the shell) instead of `#W` (window name); set `@catppuccin_window_text` and `@catppuccin_window_current_text` to `#W`
+- statusbar CPU, battery, and date/time not rendering — `tmux-cpu` and `tmux-battery` plugins must load before catppuccin; moved them above the catppuccin plugin declaration and added `@catppuccin_cpu_text`, `@catppuccin_battery_icon`, `@catppuccin_battery_text`, and `@catppuccin_date_time_text` config
 
 ## [0.2.0] - 2026-04-16
 
