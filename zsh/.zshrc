@@ -4,6 +4,7 @@ source /opt/homebrew/opt/zinit/zinit.zsh
 
 autoload -Uz compinit && compinit
 
+zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
