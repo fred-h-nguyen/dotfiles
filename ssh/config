@@ -1,8 +1,9 @@
-# Work GitHub — add your work SSH key and uncomment
-# Host github.com
-#   HostName github.com
-#   User git
-#   IdentityFile ~/.ssh/id_ed25519
+Host bitbucket.internal.taillight.cloud
+  HostName bitbucket.internal.taillight.cloud
+  User git
+  Port 7999
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
 
 Host github-personal
   HostName github.com

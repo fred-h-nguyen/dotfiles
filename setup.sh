@@ -48,6 +48,19 @@ symlink "$DOTFILES/tmux/.tmux.conf"              ~/.tmux.conf
 symlink "$DOTFILES/scripts/tmux-scripts"         ~/tmux-scripts
 symlink "$DOTFILES/ssh/config"                   ~/.ssh/config
 
+# ── Node ─────────────────────────────────────────────────────────────────────
+
+blue "→ Node (nodenv)"
+eval "$(nodenv init -)"
+NODE_VERSION=$(nodenv install --list | grep -E '^\s*[0-9]+\.[0-9]+\.[0-9]+$' | tail -1 | tr -d '[:space:]')
+if nodenv versions --bare | grep -qx "$NODE_VERSION"; then
+  echo "  $NODE_VERSION already installed"
+else
+  nodenv install "$NODE_VERSION"
+fi
+nodenv global "$NODE_VERSION"
+green "  Node $NODE_VERSION set as global"
+
 # ── tmux plugin manager ───────────────────────────────────────────────────────
 
 blue "→ tmux plugin manager (TPM)"
