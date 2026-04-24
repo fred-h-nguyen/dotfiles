@@ -1,6 +1,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source /opt/homebrew/opt/zinit/zinit.zsh
+source ~/dotfiles/zsh/npm-login.zsh
 
 autoload -Uz compinit && compinit
 
