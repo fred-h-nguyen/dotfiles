@@ -1,5 +1,6 @@
 [init]
 	defaultBranch = main
+	templatedir = ~/.git-templates
 
 [core]
 	pager = delta
